@@ -2,19 +2,26 @@
   "name": "gentlemail",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "cp tsconfig.next.json tsconfig.json && next dev --turbopack",
-  "build": "cp tsconfig.next.json tsconfig.json && next build",
-  "start": "cp tsconfig.next.json tsconfig.json && next start",
-  "build:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode production",
-  "dev:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode development",
-  "lint": "next lint"
+  "scripts": {
+    "dev": "cp tsconfig.next.json tsconfig.json && next dev --turbopack",
+    "build": "cp tsconfig.next.json tsconfig.json && next build",
+    "start": "cp tsconfig.next.json tsconfig.json && next start",
+    "build:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode production",
+    "dev:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode development",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.1.6",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-slider": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
     "next": "15.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

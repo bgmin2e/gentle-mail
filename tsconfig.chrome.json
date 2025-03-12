@@ -7,13 +7,12 @@
     "strict": true,
     "esModuleInterop": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["chrome"]
+    "types": ["chrome"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": [
-    "background.ts",
-    "content.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
+  "include": ["background.ts", "content.ts", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist"]
 }
