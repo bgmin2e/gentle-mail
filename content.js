@@ -40,20 +40,11 @@ function handleSelection() {
 
     // 버튼 클릭 이벤트
     transformButton.addEventListener("click", () => {
-      // 팝업이 열려있는지 확인
-      chrome.runtime.sendMessage(
-        { action: "transformSelectedText", text: selectedText },
-        (response) => {
-          // 팝업이 열려있지 않은 경우 (응답이 없는 경우)
-          if (chrome.runtime.lastError) {
-            // 팝업 열기
-            chrome.runtime.sendMessage({
-              action: "openPopupWithText",
-              text: selectedText,
-            });
-          }
-        }
-      );
+      // 팝업이 열려있는지 여부에 관계없이 동일한 동작 수행
+      chrome.runtime.sendMessage({
+        action: "openPopupWithTextAndTransform",
+        text: selectedText,
+      });
 
       // 버튼 숨기기
       removeTransformButton();
