@@ -10,7 +10,7 @@
     "default_popup": "popup.html",
     "default_icon": "public/globe.svg"
   },
-  "permissions": ["storage", "activeTab", "scripting", "fetch"],
+  "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": [
     "https://gentlemail.vercel.app/*",
     "http://localhost:3000/*"

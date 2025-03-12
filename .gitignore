@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Ignore build files
 dist/
+
+# Ignore tsconfig.json
+tsconfig.json

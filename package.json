@@ -2,12 +2,13 @@
   "name": "gentlemail",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "build:extension": "webpack --config webpack.config.js --mode development",
-    "start": "next start",
-    "lint": "next lint"
+"scripts": {
+  "dev": "cp tsconfig.next.json tsconfig.json && next dev --turbopack",
+  "build": "cp tsconfig.next.json tsconfig.json && next build",
+  "start": "cp tsconfig.next.json tsconfig.json && next start",
+  "build:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode production",
+  "dev:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode development",
+  "lint": "next lint"
   },
   "dependencies": {
     "lucide-react": "^0.479.0",

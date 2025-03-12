@@ -1,19 +1,13 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["chrome"]
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
-  "include": [
-    "background.ts",
-    "content.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]
 }
