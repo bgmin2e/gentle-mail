@@ -18,6 +18,10 @@ let transformButton = null;
 
 // 선택 영역이 변경될 때마다 호출되는 함수
 function handleSelection() {
+  if (!window.location.href.includes("mail.google.com")) {
+    return; // Do nothing if not on Gmail
+  }
+
   const selection = window.getSelection();
   const selectedText = selection.toString().trim();
 

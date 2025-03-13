@@ -7,7 +7,7 @@
     "build": "cp tsconfig.next.json tsconfig.json && next build",
     "start": "cp tsconfig.next.json tsconfig.json && next start",
     "build:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode production",
-    "dev:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode development",
+    "dev:extension": "cp tsconfig.chrome.json tsconfig.json && webpack --config webpack.config.js --mode development --watch",
     "lint": "next lint"
   },
   "dependencies": {
