@@ -5,29 +5,30 @@ export async function POST(request: Request) {
     const { prompt } = await request.json();
 
     // API 키 확인
-    if (!process.env.TOGETHER_API_KEY) {
-      console.error("TOGETHER_API_KEY is not defined");
+    if (!process.env.OPENAI_API_KEY) {
+      console.error("OPENAI_API_KEY is not defined");
       return NextResponse.json(
         { error: "API key is missing" },
         { status: 500 }
       );
     }
 
-    const response = await fetch("https://api.together.xyz/v1/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.TOGETHER_API_KEY}`,
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "mistralai/Mistral-7B-Instruct-v0.1",
-        prompt: prompt,
+        model: "gpt-4o",
+        messages: [{ role: "user", content: prompt }],
         max_tokens: 1000,
-        temperature: 0.7,
+        temperature: 0.2,
+        stream: true,
       }),
     });
 
-    if (!response.ok) {
+    if (!response.ok || !response.body) {
       const errorData = await response.text();
       console.error("API request failed:", response.status, errorData);
       return NextResponse.json(
@@ -36,8 +37,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const data = await response.json();
-    return NextResponse.json(data);
+    return new Response(response.body, {
+      headers: {
+        "Content-Type": "text/event-stream",
+      },
+    });
   } catch (error) {
     console.error("Error in transform API:", error);
     return NextResponse.json(
