@@ -16,6 +16,21 @@ const OriginalEmailInput: React.FC<OriginalEmailInputProps> = ({
   isButtonDisabled,
   loading,
 }) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      // Shift+Enter인 경우 줄바꿈 (기본 동작 유지)
+      if (e.shiftKey) {
+        return;
+      }
+
+      // 일반 Enter인 경우 변환 실행
+      if (!isButtonDisabled) {
+        e.preventDefault();
+        onTransform(emailDraft);
+      }
+    }
+  };
+
   return (
     <div className="relative border border-gray-300 rounded-lg">
       <textarea
@@ -23,6 +38,7 @@ const OriginalEmailInput: React.FC<OriginalEmailInputProps> = ({
         placeholder="원본 이메일을 입력해주세요."
         value={emailDraft}
         onChange={(e) => setEmailDraft(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
 
       <TransformButton
