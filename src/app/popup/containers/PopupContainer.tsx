@@ -30,7 +30,7 @@ function PopupContainer() {
     ) => {
       if (request.action === "transformSelectedText" && request.text) {
         setEmailDraft(request.text);
-        transformEmail(request.text);
+        transformEmail({ text: request.text, settings });
         sendResponse({ success: true });
       }
     };
@@ -41,10 +41,6 @@ function PopupContainer() {
       chrome.runtime.onMessage.removeListener(handleContextMenuTransform);
     };
   }, [settings]); // settings 최신값이 반영되도록 보장
-
-  useEffect(() => {
-    console.log(transformedEmail, "transformedEmail");
-  }, [transformedEmail]);
 
   return (
     <div className="w-ful max-w-lg mx-auto px-4 pb-4 pt-3 relative">
@@ -64,7 +60,7 @@ function PopupContainer() {
       <EmailInput
         emailDraft={emailDraft}
         setEmailDraft={setEmailDraft}
-        onTransform={transformEmail}
+        onTransform={() => transformEmail({ text: emailDraft, settings })}
         isButtonDisabled={isButtonDisabled}
         loading={loading}
       />

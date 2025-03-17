@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { transformEmailAPI, createPrompt } from "../utils/emailUtils";
-import { useEmailSettings } from "./useEmailSettings";
+import { EmailSettings, useEmailSettings } from "./useEmailSettings";
 
 export const useEmailTransformation = () => {
-  const { settings } = useEmailSettings();
   const [emailDraft, setEmailDraft] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [transformedEmail, setTransformedEmail] = useState<string>("");
 
-  const transformEmail = async (text: string = emailDraft) => {
-    if (!text.trim()) {
+  const transformEmail = async ({
+    text,
+    settings,
+  }: {
+    text: string;
+    settings: EmailSettings;
+  }) => {
+    if (!text?.trim()) {
       return;
     }
 
@@ -40,7 +45,6 @@ export const useEmailTransformation = () => {
   return {
     emailDraft,
     setEmailDraft,
-    settings,
     loading,
     transformedEmail,
     transformEmail,

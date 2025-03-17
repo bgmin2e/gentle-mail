@@ -1,7 +1,7 @@
 // 팝업 버튼 스타일
 const BUTTON_STYLES = `
   position: absolute;
-  background-color: #4285f4;
+  background-color: #d9db58;
   color: white;
   border: none;
   border-radius: 4px;
@@ -15,11 +15,13 @@ const BUTTON_STYLES = `
 
 // 버튼 요소 생성
 let transformButton = null;
+// 디바운싱을 위한 타이머 변수
+let selectionDebounceTimer = null;
 
 // 선택 영역이 변경될 때마다 호출되는 함수
 function handleSelection() {
   if (!window.location.href.includes("mail.google.com")) {
-    return; // Do nothing if not on Gmail
+    return;
   }
 
   const selection = window.getSelection();
@@ -35,8 +37,9 @@ function handleSelection() {
 
     // 새 버튼 생성
     transformButton = document.createElement("button");
-    transformButton.textContent = "Gentlemail로 변환";
+    transformButton.textContent = "Transform";
     transformButton.setAttribute("style", BUTTON_STYLES);
+    transformButton.setAttribute("tabindex", "0");
 
     // 버튼 위치 설정 (선택 영역 바로 아래)
     transformButton.style.left = `${rect.left + window.scrollX}px`;
@@ -74,10 +77,18 @@ document.addEventListener("mousedown", (e) => {
   }
 });
 
-// 텍스트 선택 이벤트
-document.addEventListener("mouseup", () => {
-  // 약간의 지연을 두어 선택이 완료된 후 처리
-  setTimeout(handleSelection, 10);
+// selectionchange 이벤트에 디바운싱 적용
+document.addEventListener("selectionchange", () => {
+  // 이전 타이머가 있다면 취소
+  if (selectionDebounceTimer) {
+    clearTimeout(selectionDebounceTimer);
+  }
+
+  // 새로운 타이머 설정 (200ms 후에 handleSelection 실행)
+  selectionDebounceTimer = setTimeout(() => {
+    handleSelection();
+    selectionDebounceTimer = null;
+  }, 200);
 });
 
 // 스크롤 이벤트 (스크롤 시 버튼 위치 조정 또는 제거)

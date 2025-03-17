@@ -23,7 +23,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
   return (
     <div>
-      <Popover open={isOpen}>
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <IconButton
             icon={<Settings size={16} />}

@@ -8,7 +8,12 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "public/globe.svg"
+    "default_icon": "public/gm-logo-96.png"
+  },
+  "icons": {
+    "16": "public/gm-logo-48.png",
+    "48": "public/gm-logo-48.png",
+    "96": "public/gm-logo-96.png"
   },
   "permissions": ["storage", "activeTab", "scripting", "tabs", "windows"],
   "host_permissions": [

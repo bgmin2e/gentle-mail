@@ -45,7 +45,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: "manifest.json", to: "manifest.json" },
-        { from: "public/globe.svg", to: "public/globe.svg" },
+        { from: "public/gm-logo-48.png", to: "public/gm-logo-48.png" },
+        { from: "public/gm-logo-96.png", to: "public/gm-logo-96.png" },
       ],
     }),
     new HtmlWebpackPlugin({
