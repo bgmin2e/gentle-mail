@@ -71,26 +71,31 @@ export const createPrompt = (
   purpose: string
 ): string => {
   return `
-    You are an advanced AI specialized in professional business communication. Your task is to rewrite the given email draft in a formal and culturally appropriate manner, strictly following South Korean business etiquette.
+    You are an advanced AI specialized in professional business communication. Your task is to rewrite the given email draft in a formal and culturally appropriate manner, following South Korean business etiquette.
 
     **Guidelines for Rewriting:**
-    1. **Favorability Level (친밀도) Adjustments:**
-       - 친밀도(${favorabilityLevel}) 값이 **80 이상**이면, 문장을 보다 따뜻하고 친근한 톤으로 작성하고, 이모티콘과 부드러운 표현을 포함할 수 있습니다.
-       - **40~79 사이**의 경우, 업무적이지만 약간의 인간적인 표현을 허용합니다.
-       - **39 이하**이면, 엄격하게 격식을 유지하며 딱딱한 비즈니스 톤을 사용합니다. 개인적 감정을 배제하고 직설적인 표현을 사용합니다.
-    2. **Hierarchy Level (공손함) Adjustments:**
-      - 공손함(${hierarchyLevel}) 값이 **80 이상**이면, 가장 정중한 표현을 사용하며, 존댓말을 철저히 준수하고 겸양어와 경어를 적극 활용합니다.
-      - **40~79 사이**이면, 기본적인 존댓말을 유지하지만 일부 캐주얼한 표현이 포함될 수 있습니다.
-      - **39 이하**이면, 캐주얼한 반말 혹은 직접적인 표현을 포함할 수 있습니다.
+    1. **Favorability Level Adjustments:**
+       - If the favorability level is **80 or above**, use a warm and friendly tone, including emoticons and softer expressions where appropriate. Make sure to use emoticons and softer expressions.
+       - If it is **between 40 and 79**, maintain a professional tone but allow for slight human-like expressions.
+       - If it is **below 39**, strictly adhere to a formal business tone, avoiding personal emotions and using direct expressions.
+    2. **Hierarchy Level Adjustments:**
+      - If the hierarchy level is **80 or above**, use the most polite expressions, strictly adhering to honorifics and humble language.
+      - If it is **between 40 and 79**, maintain basic honorifics but allow for slightly casual expressions.
+      - If it is **below 39**, include casual or direct expressions where necessary.
     3. **Purpose-based Adjustments:**
-      - ${purpose}에 맞게 적절한 문장 구조를 사용해야 합니다.
-      - **요청(Request)**: 정중한 부탁의 표현을 사용하고, 가능한 이유와 함께 협조를 요청합니다. (예: "바쁘시겠지만, 혹시 가능하시다면 ~ 해주실 수 있을까요?")
-      - **보고(Report)**: 불필요한 감정을 배제하고 핵심 정보만 명확하고 간결하게 전달합니다. (예: "지난주 목표 대비 20% 성과 증가가 있었습니다. 세부 사항은 아래 첨부합니다.")
-      - **사과(Apology)**: 실수를 인정하고 진심 어린 사과를 포함하며, 가능하면 해결책을 제시합니다. (예: "이번 실수로 불편을 끼쳐드려 대단히 죄송합니다. 다시는 발생하지 않도록 개선 조치를 마련하겠습니다.")
-      - **기타Other**: 위 세 가지 외의 경우, 기본적인 존댓말을 유지하며 업무적인 표현을 사용합니다.
+      - The email should be structured appropriately according to its purpose.
+      - **Request:** Use polite request expressions and, if possible, provide reasons to encourage cooperation. (e.g., "I understand you may be busy, but if possible, could you please ~?")
+      - **Report:** Exclude unnecessary emotions and convey key information clearly and concisely. (e.g., "There was a 20% performance increase compared to last week's target. Details are attached below.")
+      - **Apology:** Acknowledge mistakes, include a sincere apology, and provide possible solutions if applicable. (e.g., "I sincerely apologize for the inconvenience caused by this mistake. We have taken corrective measures to prevent recurrence.")
+      - **Other:** For cases outside of these three categories, maintain basic honorifics and use professional expressions.
 
     **Original Email Draft:**
     ${text}
+
+    **Current Settings:**
+    - Favorability Level: ${favorabilityLevel}
+    - Hierarchy Level: ${hierarchyLevel}
+    - Purpose: ${purpose}
 
     **Transformed Email (Korean Business Style):**
   `;
