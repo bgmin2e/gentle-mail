@@ -8,12 +8,12 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "public/gm-logo-96.png"
+    "default_icon": "icons/gm-logo-96.png"
   },
   "icons": {
-    "16": "public/gm-logo-48.png",
-    "48": "public/gm-logo-48.png",
-    "96": "public/gm-logo-96.png"
+    "16": "icons/gm-logo-48.png",
+    "48": "icons/gm-logo-48.png",
+    "96": "icons/gm-logo-96.png"
   },
   "permissions": ["storage", "activeTab", "scripting", "tabs", "windows"],
   "host_permissions": [
@@ -22,7 +22,11 @@
   ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "https://mail.google.com/*",
+        "https://outlook.live.com/*",
+        "https://mail.naver.com/*"
+      ],
       "js": ["content.js"]
     }
   ]

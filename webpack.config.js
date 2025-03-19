@@ -2,7 +2,7 @@ const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
   entry: {
     background: "./background.js",
@@ -45,8 +45,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: "manifest.json", to: "manifest.json" },
-        { from: "public/gm-logo-48.png", to: "public/gm-logo-48.png" },
-        { from: "public/gm-logo-96.png", to: "public/gm-logo-96.png" },
+        { from: "icons/gm-logo-48.png", to: "icons/gm-logo-48.png" },
+        { from: "icons/gm-logo-96.png", to: "icons/gm-logo-96.png" },
       ],
     }),
     new HtmlWebpackPlugin({
@@ -56,4 +56,62 @@ module.exports = {
       scriptLoading: "module",
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ["console.log"],
+          },
+          output: {
+            comments: false,
+          },
+          ecma: 5,
+          warnings: false,
+          parse: {},
+          mangle: true,
+        },
+        extractComments: false,
+        parallel: true,
+      }),
+    ],
+    splitChunks: {
+      chunks: "all",
+      minSize: 20000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+          priority: -10,
+        },
+        react: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: "react-vendor",
+          chunks: "all",
+          priority: 20,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+    runtimeChunk: {
+      name: "runtime",
+    },
+  },
+  performance: {
+    hints: "warning",
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
 };
