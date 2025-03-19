@@ -12,10 +12,6 @@ module.exports = {
           "sans-serif",
         ],
       },
-      colors: {
-        "gtml-pink": "#f4d1d5",
-        "gtml-green": "#e6e7a2",
-      },
     },
   },
   plugins: [],
