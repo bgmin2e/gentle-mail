@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const { prompt } = await request.json();
-
     // API 키 확인
     if (!process.env.OPENAI_API_KEY) {
       console.error("OPENAI_API_KEY is not defined");

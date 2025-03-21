@@ -15,7 +15,7 @@
     "48": "icons/gm-logo-48.png",
     "96": "icons/gm-logo-96.png"
   },
-  "permissions": ["storage", "activeTab", "scripting", "tabs", "windows"],
+  "permissions": ["tabs", "windows"],
   "host_permissions": [
     "https://gentlemail.vercel.app/*",
     "http://localhost:3000/*"

@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Mail, X } from "lucide-react";
+import { X } from "lucide-react";
 
 import SettingsPanel from "../components/SettingsPanel";
 import EmailInput from "../components/EmailInput";
 import TransformedEmail from "../components/TransformedEmail";
 import { useEmailTransformation } from "../hooks/useEmailTransformation";
-import IconButton from "@/components/ui/icon-button";
+
 import { useEmailSettings } from "../hooks/useEmailSettings";
+import IconButton from "@/components/ui/icon-button";
 
 function PopupContainer() {
   const {
