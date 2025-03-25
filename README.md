@@ -43,7 +43,7 @@ A simple and opinionated Chrome extension that helps you write emails in a more 
 ## 📦 Install
 
 1. Chrome Web Store  
-   Chrome 웹 스토어에서 플러그인을 설치하세요. 위의 링크를 통해 찾을 수 있습니다. 이 방법이 권장되며, 업데이트는 자동으로 설치됩니다.  
+   Chrome 웹 스토어에서 플러그인을 설치하세요. 이 [링크](https://chromewebstore.google.com/detail/gentlemail/cfjlofaccpgfndneamahkbojglkabhbl?hl=ko&utm_source=ext_sidebar)를 통해 찾을 수 있습니다. 이 방법이 권장되며, 업데이트는 자동으로 설치됩니다.  
    Install this plugin using Chrome Web Store. Please find the link above. This is the preferred way of installation. Updates are installed automatically.
 
 2. (Optional) Manual Installation  
